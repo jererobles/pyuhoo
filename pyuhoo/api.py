@@ -4,11 +4,7 @@ from typing import Optional, Union
 from aiohttp import ClientError, ClientResponseError, ClientSession
 from aiohttp.hdrs import AUTHORIZATION, USER_AGENT
 
-from .consts import (
-    USER_AGENT_PRODUCT,
-    USER_AGENT_PRODUCT_VERSION,
-    USER_AGENT_SYSTEM_INFORMATION,
-)
+from .consts import USER_AGENT_STRING
 from .endpoints import (
     API_URL_SCAFFOLD,
     APP_MUST_UPDATE,
@@ -31,12 +27,7 @@ class API(object):
     def __init__(self, websession: ClientSession) -> None:
         self._log: logging.Logger = logging.getLogger("pyuhoo")
 
-        self._user_agent: str = (
-            f"{USER_AGENT_PRODUCT}"
-            + "/"
-            + f"{USER_AGENT_PRODUCT_VERSION} "
-            + f"({USER_AGENT_SYSTEM_INFORMATION})"
-        )
+        self._user_agent: str = USER_AGENT_STRING
 
         self._websession: ClientSession = websession
 
